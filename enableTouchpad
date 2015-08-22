@@ -1,0 +1,12 @@
+#!/bin/bash
+#Usage: enableTouchpad 0 or 1
+xinput --list | grep "TouchPad" | {
+_FLAG=$1
+IFS='='
+read
+set -- $REPLY
+IFS=$' \t\n'
+set -- $2
+xinput set-int-prop $1 "Device Enabled" 8 $_FLAG
+}
+
